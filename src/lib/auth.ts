@@ -12,7 +12,7 @@ const loginSchema = z.object({
 });
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma), // Comentado temporalmente
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -109,4 +109,5 @@ export const authOptions: NextAuthOptions = {
     },
   },
   debug: process.env.NODE_ENV === "development",
+  secret: process.env.NEXTAUTH_SECRET,
 };
