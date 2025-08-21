@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode styles */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', Helvetica, Arial, sans-serif;
+}
+
+@layer components {
+  .btn {
+    @apply appearance-none border border-gray-700 bg-gray-800 text-white rounded-xl px-4 py-2 font-semibold cursor-pointer transition-all duration-200 inline-flex gap-2 items-center;
+  }
+  
+  .btn:hover {
+    @apply transform -translate-y-0.5 border-gray-600;
+  }
+  
+  .btn.primary {
+    @apply bg-gradient-to-r from-purple-700 to-purple-600 border-none;
+  }
+  
+  .btn.ghost {
+    @apply bg-slate-900;
+  }
+  
+  .btn.warn {
+    @apply bg-gray-800 border-gray-600;
+  }
+  
+  .btn:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+  
+  .card {
+    @apply bg-gradient-to-b from-slate-900 to-slate-800 border border-gray-700 rounded-2xl p-4;
+  }
+  
+  .input {
+    @apply w-full bg-slate-900 text-gray-100 border border-gray-700 rounded-lg px-3 py-2 text-sm;
+  }
+  
+  .textarea {
+    @apply w-full bg-slate-900 text-gray-100 border border-gray-700 rounded-lg px-3 py-2 text-sm min-h-32 resize-y;
+  }
+}

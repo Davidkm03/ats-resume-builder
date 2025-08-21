@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(grep:*)",
+      "Bash(npm run lint)",
+      "Bash(find:*)",
+      "Bash(npm run dev:*)",
+      "Bash(ls:*)",
+      "Bash(npx prisma:*)",
+      "Bash(pg_isready:*)",
+      "Bash(DATABASE_URL=\"postgresql://localhost:5432/ats_resume_builder\" npx prisma db push)",
+      "Bash(brew services start:*)",
+      "Bash(brew services:*)",
+      "Bash(bash:*)",
+      "Bash(source:*)",
+      "Bash(export DATABASE_URL=\"postgresql://localhost:5432/ats_resume_builder\")",
+      "Bash(createdb:*)",
+      "Bash(export DATABASE_URL=\"postgresql://admin@localhost:5432/ats_resume_builder\")",
+      "Bash(pkill:*)",
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(rm:*)",
+      "Bash(npx tsc:*)",
+      "Bash(mkdir:*)",
+      "Bash(true)",
+      "Bash(kill:*)"
+    ],
+    "deny": []
+  }
+}

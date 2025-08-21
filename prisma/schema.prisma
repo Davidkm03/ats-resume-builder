@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String    @id @default(cuid())
+  email                 String    @unique
+  passwordHash          String
+  name                  String?
+  subscriptionTier      String    @default("free")
+  subscriptionExpiresAt DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  cvs                   CV[]
+  sessions              UserSession[]
+  aiUsage               AIUsage[]
+  
+  @@map("users")
+}
+
+model CV {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  template    String   @default("modern")
+  data        Json
+  isPublic    Boolean  @default(false)
+  shareToken  String?  @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("cvs")
+}
+
+model Template {
+  id          String  @id
+  name        String
+  description String?
+  previewUrl  String?
+  isPremium   Boolean @default(false)
+  category    String?
+  config      Json
+  
+  @@map("templates")
+}
+
+model UserSession {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("user_sessions")
+}
+
+model AIUsage {
+  id          String   @id @default(cuid())
+  userId      String
+  feature     String
+  tokensUsed  Int      @default(0)
+  createdAt   DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("ai_usage")
+}
